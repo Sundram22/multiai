@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chat — Er. Sundram Tiwari</title>
+
+  <!-- Google Fonts: Sora (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon">✦</span>
+        <span class="brand-name">NeuralChat</span>
+      </div>
+      <div class="header-credit">by Er. Sundram Tiwari</div>
+    </div>
+  </header>
+
+  <!-- ═══════════════ MAIN CHAT AREA ═══════════════ -->
+  <main class="chat-wrapper">
+
+    <!-- Scrollable message feed -->
+    <div class="chat-feed" id="chatFeed">
+
+      <!-- Welcome splash (hidden once first message is sent) -->
+      <div class="welcome-splash" id="welcomeSplash">
+        <div class="splash-icon">✦</div>
+        <h2>Welcome to NeuralChat</h2>
+        <p>Powered by Claude 3 Sonnet, Qwen‑2 72B, and Mistral 7B with automatic fallback.</p>
+        <div class="splash-hints">
+          <span>💡 Ask me anything</span>
+          <span>📝 Write or summarise</span>
+          <span>🔍 Analyse &amp; explain</span>
+        </div>
+      </div>
+
+    </div><!-- /chat-feed -->
+
+    <!-- ─── Input Bar ─── -->
+    <div class="input-bar">
+      <div class="input-inner">
+        <textarea
+          id="userInput"
+          class="chat-input"
+          placeholder="Message NeuralChat…"
+          rows="1"
+          aria-label="Message input"
+        ></textarea>
+        <button class="send-btn" id="sendBtn" aria-label="Send message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+      <p class="input-disclaimer">NeuralChat may produce inaccurate information. Verify important facts.</p>
+    </div>
+
+  </main>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="app-footer">
+    <p>Design and Developed by <strong>Er. Sundram Tiwari</strong></p>
+  </footer>
+
+  <!-- Message Templates (rendered by JS) -->
+  <template id="tplUser">
+    <div class="msg msg-user">
+      <div class="bubble"><!-- content --></div>
+    </div>
+  </template>
+
+  <template id="tplAI">
+    <div class="msg msg-ai">
+      <div class="avatar">✦</div>
+      <div class="msg-body">
+        <div class="bubble"><!-- content --></div>
+        <div class="msg-meta"><!-- model tag --></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="tplTyping">
+    <div class="msg msg-ai" id="typingIndicator">
+      <div class="avatar">✦</div>
+      <div class="msg-body">
+        <div class="bubble typing-bubble">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
